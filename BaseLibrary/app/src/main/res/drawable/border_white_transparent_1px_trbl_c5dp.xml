@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 白色边框 透明填充 四角全5dp圆角-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">  
+    <item>  
+        <shape>  
+            <solid android:color="#00000000" />  
+            <stroke android:width="1px" android:color="#ffffff" />
+            <corners android:radius="5dp"/>  
+        </shape>  
+    </item>  
+    <item android:top="1px" android:bottom="1px" android:left="1px" android:right="1px">  
+        <shape>  
+            <solid android:color="#00000000" />  
+            <corners android:radius="5dp"/>  
+        </shape>  
+    </item>  
+</layer-list>  

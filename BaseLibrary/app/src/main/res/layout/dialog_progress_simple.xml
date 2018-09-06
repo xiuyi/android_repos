@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 简单进度条：左边一个圆形进度条右边文字介绍 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp" >
+
+    <ProgressBar
+        android:id="@+id/loadingImageView"
+        android:layout_width="@dimen/simple_progressbar_wh"
+        android:layout_height="@dimen/simple_progressbar_wh"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDuration="1000"
+        android:indeterminateDrawable="@drawable/anim_simple_progress"
+        android:indeterminateOnly="true" />
+
+    <TextView
+        android:id="@+id/id_tv_loadingmsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/loadingImageView"
+        android:layout_centerVertical="true"
+        android:textColor="#ffffff"
+        android:textSize="14dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 灰色 顶部左右3dp圆角 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+	<corners android:radius="3dp"/>
+	<solid android:color="#cccccc"/>
+</shape>

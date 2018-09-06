@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">BaseLibrary</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="cancle">取消</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="login">登  录</string>
+    <string name="open">打 开</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="login_out">退出</string>
+    <string name="submit">提交</string>
+    <string name="search">搜索</string>
+    <string name="back">返回</string>
+    <string name="add">添加</string>
+    <string name="remove">移除</string>
+    <string name="clear">清空</string>
+    <string name="send">发送</string>
+    <string name="notify">通知</string>
+    <string name="setting">设置</string>
+    <string name="email_cn">邮箱</string>
+    <string name="email_en">email</string>
+    <string name="mobile">移动电话</string>
+    <string name="fixed_line">固定电话</string>
+    <string name="phone">电话</string>
+    <string name="address">地址</string>
+    <string name="net_error">网络异常,请检查网络连接</string>
 </resources>
