@@ -15,7 +15,6 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
  * Glide.with(this).load(url).transform(new CornersTransform(context,50)).into(iv1);
  * Created by chen on 2018/5/10.
  */
-
 public  class CornersTransform extends BitmapTransformation {
     private float radius;
 

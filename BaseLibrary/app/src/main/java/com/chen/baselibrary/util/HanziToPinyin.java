@@ -1,17 +1,20 @@
 package com.chen.baselibrary.util;
+
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+
 /**
- * @author chen
- * @date 2018/9/6 下午5:38
- * email xiuyi.chen@erinspur.com
- * desc
+ * Created by xiuyi.chen on 2016-06-27.
  */
 public class HanziToPinyin {
     private static HanziToPinyin instance;
     private HanziToPinyin(){}
     public static synchronized HanziToPinyin getInstance(){
-        if(instance == null) {
+        if(instance == null)
             instance = new HanziToPinyin();
-        }
         return instance;
     }
 
@@ -21,8 +24,23 @@ public class HanziToPinyin {
      * @return 拼音
      */
     public String converterToFirstSpell(String chines){
-
-        return chines;
+        String pinyinName = "";
+        char[] nameChar = chines.toCharArray();
+        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+        defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        for (int i = 0; i < nameChar.length; i++) {
+            if (nameChar[i] > 128) {
+                try {
+                    pinyinName += PinyinHelper.toHanyuPinyinStringArray(nameChar[i], defaultFormat)[0].charAt(0);
+                } catch (BadHanyuPinyinOutputFormatCombination e) {
+                    e.printStackTrace();
+                }
+            }else{
+                pinyinName += nameChar[i];
+            }
+        }
+        return pinyinName;
     }
 
     /**
@@ -31,7 +49,22 @@ public class HanziToPinyin {
      * @return 拼音
      */
     public String converterToSpell(String chines){
-
-        return chines;
+        String pinyinName = "";
+        char[] nameChar = chines.toCharArray();
+        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+        defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        for (int i = 0; i < nameChar.length; i++) {
+            if (nameChar[i] > 128) {
+                try {
+                    pinyinName += PinyinHelper.toHanyuPinyinStringArray(nameChar[i], defaultFormat)[0];
+                } catch (BadHanyuPinyinOutputFormatCombination e) {
+                    e.printStackTrace();
+                }
+            }else{
+                pinyinName += nameChar[i];
+            }
+        }
+        return pinyinName;
     }
 }

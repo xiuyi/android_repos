@@ -24,6 +24,8 @@ import com.chen.baselibrary.widget.AlertDialog;
 import com.chen.baselibrary.widget.SimpleProgressDialog;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import butterknife.ButterKnife;
+
 
 /**
  * 基类Activity
@@ -81,8 +83,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             }
         }
         setContentView(getContentView());
-        //该方法必须在setContentView()方法之后调用
-        AnnotateUtil.initBindView(this);
+        //view绑定，必须在setContentView之后调用
+        ButterKnife.bind(this);
     }
 
     /**
