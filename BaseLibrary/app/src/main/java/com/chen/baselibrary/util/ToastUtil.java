@@ -24,7 +24,7 @@ public class ToastUtil {
 	 */
 	public enum SHOW_POSITION {
 		TOP(Gravity.TOP), CENTER(Gravity.CENTER_HORIZONTAL), BOTTOM(
-				Gravity.BOTTOM); // 调用构造函数来构造枚举项
+				Gravity.BOTTOM);
 
 		private int value = 0;
 
@@ -165,6 +165,7 @@ public class ToastUtil {
 		case Gravity.BOTTOM:
 			yOffset = 20;
 			break;
+			default:
 		}
 		toast.setGravity(gravity, 0, yOffset);
 		toast.setDuration(duration);
@@ -199,6 +200,7 @@ public class ToastUtil {
 		case Gravity.BOTTOM:
 			yOffset = 20;
 			break;
+			default:
 		}
 		toast.setGravity(gravity, 0, yOffset);
 		toast.setDuration(duration);

@@ -27,7 +27,7 @@ public class SimpleProgressDialog extends Dialog{
         super(context, theme);
         this.setContentView(R.layout.dialog_progress_simple);
         this.getWindow().getAttributes().gravity = Gravity.CENTER;
-        TextView tvMsg = (TextView) this.findViewById(R.id.id_tv_loadingmsg);
+        TextView tvMsg = this.findViewById(R.id.id_tv_loadingmsg);
         if (strMessage != null) {
             tvMsg.setVisibility(View.VISIBLE);
             tvMsg.setText(strMessage);

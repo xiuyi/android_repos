@@ -8,7 +8,10 @@ import android.util.DisplayMetrics;
 import com.tencent.bugly.Bugly;
 
 /**
- * Created by xiuyi.chen on 2016-05-25.
+ * @author chen
+ * @date 2018/9/7 下午1:46
+ * email xiuyi.chen@erinspur.com
+ * desc Application基类
  */
 public class BaseApplication extends Application{
     protected static BaseApplication instance;
