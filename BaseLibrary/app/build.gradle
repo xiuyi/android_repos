@@ -87,6 +87,7 @@ dependencies {
     // Room
     implementation "android.arch.persistence.room:runtime:$project.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$project.roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$project.roomVersion"
     // 数据库调试
     debugImplementation "com.amitshekhar.android:debug-db:$project.debugDBVersion"
     // 汉字转拼音

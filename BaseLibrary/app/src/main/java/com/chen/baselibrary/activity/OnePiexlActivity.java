@@ -39,10 +39,6 @@ public class OnePiexlActivity extends BaseActivity {
         return R.layout.activity_one_piexl;
     }
 
-    @Override
-    protected void onWidgetClick(View v) {
-
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

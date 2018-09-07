@@ -47,11 +47,6 @@ public class WebActivity extends BaseToolBarActivity implements DownloadListener
         return R.layout.activity_web;
     }
 
-    @Override
-    protected void onWidgetClick(View v) {
-
-    }
-
     /**
      * 设置webview属性
      */
