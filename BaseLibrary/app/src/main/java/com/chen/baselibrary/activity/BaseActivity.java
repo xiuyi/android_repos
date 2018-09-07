@@ -18,7 +18,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.chen.baselibrary.R;
-import com.chen.baselibrary.util.AnnotateUtil;
 import com.chen.baselibrary.util.ToastUtil;
 import com.chen.baselibrary.widget.AlertDialog;
 import com.chen.baselibrary.widget.SimpleProgressDialog;
