@@ -60,9 +60,9 @@ dependencies {
     implementation "com.android.support:support-v4:$project.supportLibraryVersion"
 
     // Retrofit库
-    compile "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$project.retrofitVersion"
 
     // guava
     implementation "com.google.guava:guava:$project.guavaVersion"
@@ -78,11 +78,11 @@ dependencies {
     implementation "com.tbruyelle.rxpermissions2:rxpermissions:$project.rxPermissionVersion"
 
     // bugly SDK
-    compile "com.tencent.bugly:crashreport_upgrade:$project.buglyVersion"
-    compile "com.tencent.bugly:nativecrashreport:$project.buglyVersion"
+    implementation "com.tencent.bugly:crashreport_upgrade:$project.buglyVersion"
+    implementation "com.tencent.bugly:nativecrashreport:$project.buglyVersion"
 
     // 黄油刀
-    compile "com.jakewharton:butterknife:$project.butterknifeVersion"
+    implementation "com.jakewharton:butterknife:$project.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknifeVersion"
     // Room
     implementation "android.arch.persistence.room:runtime:$project.roomVersion"

@@ -23,10 +23,10 @@ classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'<br/>
 在app的build.gradle中添加<br/>
 apply plugin: 'com.jakewharton.butterknife'<br/>
 
-6、dubug-db 默认端口号8081
-buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-            resValue("string", "PORT_NUMBER", "8081") //修改端口号
-        }
-    }
+6、dubug-db 默认端口号8081<br/>
+buildTypes {<br/>
+        debug {<br/>
+            signingConfig signingConfigs.debug<br/>
+            resValue("string", "PORT_NUMBER", "8081") //修改端口号<br/>
+        }<br/>
+    }<br/>
