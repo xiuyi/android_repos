@@ -12,8 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-import com.chen.baselibrary.utils.DimentUtils;
-import com.chen.baselibrary.utils.LetterComparator;
+
+import com.chen.baselibrary.util.DimentUtils;
+import com.chen.baselibrary.util.LetterComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -111,7 +112,7 @@ public abstract class LetterIndexAdapter extends BaseAdapter implements
             tv.setBackgroundColor(topLetterBg);
             tv.setTextColor(topLetterTextColor);
             tv.setTextSize(topLetterTextSize);
-            tv.setPadding((int)DimentUtils.dipToPx(context,10), 5, 0, 5);
+            tv.setPadding((int) DimentUtils.dipToPx(context,10), 5, 0, 5);
             tv.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
             ((ViewGroup) convertView).addView(tv);
             topLetterView = tv;

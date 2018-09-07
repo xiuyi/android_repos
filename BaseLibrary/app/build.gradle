@@ -51,3 +51,21 @@ dependencies {
     // Dependencies for Android unit tests
     androidTestImplementation "junit:junit:$rootProject.ext.junitVersion"
 }
+// github 打包
+apply plugin: 'maven'
+ext {
+    PUBLISH_GROUP_ID = 'com.chen'
+    PUBLISH_ARTIFACT_ID = 'baselibrary'
+    PUBLISH_VERSION = android.defaultConfig.versionName
+}
+uploadArchives {
+    repositories.mavenDeployer {
+        def deployPath = file(getProperty('aar.deployPath'))
+        repository(url: "file://${deployPath.absolutePath}")
+        pom.project {
+            groupId project.PUBLISH_GROUP_ID
+            artifactId project.PUBLISH_ARTIFACT_ID
+            version project.PUBLISH_VERSION
+        }
+    }
+}

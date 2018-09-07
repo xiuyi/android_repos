@@ -29,7 +29,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.chen.baselibrary.R;
-import com.chen.baselibrary.utils.DimentUtils;
+import com.chen.baselibrary.util.DimentUtils;
 
 
 /**
