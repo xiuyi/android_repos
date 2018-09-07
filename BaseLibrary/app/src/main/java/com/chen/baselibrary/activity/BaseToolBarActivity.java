@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import com.chen.baselibrary.R;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
+ * @author chen
+ *
  * 带有ToolBar的基类Activity，继承自BaseActivity
  * 1、显示ProgressDialog
  * 2、显示自定义Toast
@@ -31,6 +34,7 @@ public abstract class BaseToolBarActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         toolbar = this.findViewById(R.id.title_bar);
+        checkNotNull(toolbar,"布局文件未添加Toolbar");
         toolbar.setSubtitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();

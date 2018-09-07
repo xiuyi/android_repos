@@ -34,7 +34,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = getContentView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(getContentView(),null,false);
         // 检查非空
         view = checkNotNull(view);
         // 绑定View
@@ -46,20 +46,16 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        //在fragment中必须调用unbind方法
+        // 在fragment中必须调用unbind方法
         this.unbinder.unbind();
     }
 
     /**
-     * 有子类实现的抽象方法，获取view
+     * 由子类实现的抽象方法，获取view的id
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
      * @return
      */
     @NonNull
-    protected abstract View getContentView(LayoutInflater inflater, ViewGroup container,
-                                           Bundle savedInstanceState);
+    protected abstract int getContentView();
 
 }

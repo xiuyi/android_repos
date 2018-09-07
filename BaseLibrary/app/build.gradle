@@ -21,6 +21,8 @@ ext {
     buglyVersion = 'latest.release'
     retrofitVersion = '2.0.2'
     butterknifeVersion = '8.8.1'
+    roomVersion = '1.1.1'
+    debugDBVersion = '1.0.4'
 }
 
 android {
@@ -82,6 +84,12 @@ dependencies {
     // 黄油刀
     compile "com.jakewharton:butterknife:$project.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknifeVersion"
+    // Room
+    implementation "android.arch.persistence.room:runtime:$project.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$project.roomVersion"
+    // 数据库调试
+    debugImplementation "com.amitshekhar.android:debug-db:$project.debugDBVersion"
+    // 汉字转拼音
     implementation files('libs/pinyin4j-2.5.0.jar')
 }
 // github 打包

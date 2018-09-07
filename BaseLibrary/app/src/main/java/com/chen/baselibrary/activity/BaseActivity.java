@@ -24,9 +24,13 @@ import com.chen.baselibrary.widget.SimpleProgressDialog;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 
 
 /**
+ *
+ * @author chen
+ *
  * 基类Activity
  * 1、显示ProgressDialog
  * 2、显示自定义Toast
@@ -112,16 +116,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             this.unregisterReceiver(this.internalReceiver);
         }
     }
-
-    /**
-     * 隐藏进度条
-     */
-    protected void hideProgressDialog() {
-        if (this.progressDialog != null && this.progressDialog.isShowing()) {
-            this.progressDialog.cancel();
-        }
-        this.progressDialog = null;
-    }
     //--------------------------------------抽象方法-------------------------------------
 
     /**
@@ -179,13 +173,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     //-------------------------------------权限申请---------------------------------------
     //TODO 小米有bug
-    protected final void requestPermission(String permission, RequestPermissionCallback callback) {
+    protected final void requestPermission(String[] permissions, RequestPermissionCallback callback) {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions
-                .request(permission)
-                .subscribe(granted -> {
-                    callback.onHandlerPermission(granted);
-                });
+                .request(permissions)
+                .subscribe(aBoolean -> callback.onHandlerPermission(aBoolean));
     }
 
     /**
@@ -247,6 +239,16 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         if (!this.progressDialog.isShowing()) {
             this.progressDialog.show();
         }
+    }
+
+    /**
+     * 隐藏进度条
+     */
+    protected void hideProgressDialog() {
+        if (this.progressDialog != null && this.progressDialog.isShowing()) {
+            this.progressDialog.cancel();
+        }
+        this.progressDialog = null;
     }
     //-------------------------------------显示AlertDialog------------------------------
 
