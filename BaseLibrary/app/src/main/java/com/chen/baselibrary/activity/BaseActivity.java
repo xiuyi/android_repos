@@ -37,7 +37,7 @@ import io.reactivex.functions.Consumer;
  * 3、保存屏幕宽高
  * 4、使用注解代替findViewById
  */
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity{
     /**
      * 进度条
      */
@@ -310,18 +310,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void showNetErrorToast() {
         ToastUtil.showNetErrorToast(this);
     }
-
-    @Override
-    public void onClick(View v) {
-        onWidgetClick(v);
-    }
-
-    /**
-     * onClickListener
-     *
-     * @param v
-     */
-    protected abstract void onWidgetClick(View v);
 
     /**
      * 返回按钮
