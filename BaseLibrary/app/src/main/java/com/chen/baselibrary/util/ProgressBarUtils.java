@@ -5,16 +5,16 @@ import android.content.Context;
 import com.chen.baselibrary.widget.SimpleProgressDialog;
 
 
-public class ProgressBarUtil {
+public class ProgressBarUtils {
 
-	private static ProgressBarUtil instance;
+	private static ProgressBarUtils instance;
 	private SimpleProgressDialog progressDialog;
 	
-	private ProgressBarUtil(){}
+	private ProgressBarUtils(){}
 	
-	public static synchronized ProgressBarUtil getInstance(){
+	public static synchronized ProgressBarUtils getInstance(){
 		if(instance==null)
-			instance = new ProgressBarUtil();
+			instance = new ProgressBarUtils();
 		return instance;
 	}
 	/**

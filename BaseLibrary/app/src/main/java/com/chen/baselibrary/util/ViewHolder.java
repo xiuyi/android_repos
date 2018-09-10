@@ -4,7 +4,7 @@ import android.util.SparseArray;
 import android.view.View;
 
 /**
- * ViewHolder工具类
+ * ViewHolder工具类 系统改用黄油刀绑定View，不在推荐使用该ViewHolder
  * @author chenxiuyi
  * 使用方法
  *public View getView(int position, View convertView, ViewGroup parent) {  
@@ -23,6 +23,7 @@ import android.view.View;
     return convertView;  
 }  
  */
+@Deprecated
 public class ViewHolder {
 	// 使用泛型降低类型转换
     @SuppressWarnings("unchecked")  

@@ -21,12 +21,10 @@ implementation 'com.chen:baselibrary:1.0'<br/>
 在Project的build.gradle中添加<br/>
 classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'<br/>
 在app的build.gradle中添加<br/>
-apply plugin: 'com.jakewharton.butterknife'<br/>
+apply plugin: 'com.jakewharton.butterknife'<br/>"
+注意:注解处理器需放在app模块的build.gradle中
+annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknifeVersion"
 
-6、dubug-db 只在debug模式下可用，默认端口号8081<br/>
-buildTypes {<br/>
-        debug {<br/>
-            signingConfig signingConfigs.debug<br/>
-            resValue("string", "PORT_NUMBER", "8081") //修改端口号<br/>
-        }<br/>
-    }<br/>
+6、room使用
+    注意:注解处理器需放在app模块的build.gradle中
+    annotationProcessor "android.arch.persistence.room:compiler:$project.roomVersion"

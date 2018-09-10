@@ -18,13 +18,12 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.chen.baselibrary.R;
-import com.chen.baselibrary.util.ToastUtil;
+import com.chen.baselibrary.util.ToastUtils;
 import com.chen.baselibrary.widget.AlertDialog;
 import com.chen.baselibrary.widget.SimpleProgressDialog;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.ButterKnife;
-import io.reactivex.functions.Consumer;
 
 
 /**
@@ -280,35 +279,35 @@ public abstract class BaseActivity extends AppCompatActivity{
      * 显示纯文字Toast--short
      */
     protected void showShortTxtToast(String txt) {
-        ToastUtil.showShortTxt(this, txt, ToastUtil.SHOW_POSITION.CENTER);
+        ToastUtils.showShortTxt(this, txt, ToastUtils.SHOW_POSITION.CENTER);
     }
 
     /**
      * 显示带图标的Toast--short
      */
     protected void showShortIconToast(int icon, String txt) {
-        ToastUtil.showShortIcon(this, txt, icon, ToastUtil.SHOW_POSITION.CENTER);
+        ToastUtils.showShortIcon(this, txt, icon, ToastUtils.SHOW_POSITION.CENTER);
     }
 
     /**
      * 显示纯文字Toast--long
      */
     protected void showLongTxtToast(String txt) {
-        ToastUtil.showLongTxt(this, txt, ToastUtil.SHOW_POSITION.CENTER);
+        ToastUtils.showLongTxt(this, txt, ToastUtils.SHOW_POSITION.CENTER);
     }
 
     /**
      * 显示带图标的Toast--long
      */
     protected void showLongIconToast(int icon, String txt) {
-        ToastUtil.showLongIcon(this, txt, icon, ToastUtil.SHOW_POSITION.CENTER);
+        ToastUtils.showLongIcon(this, txt, icon, ToastUtils.SHOW_POSITION.CENTER);
     }
 
     /**
      * 显示网络错误的Toast
      */
     protected void showNetErrorToast() {
-        ToastUtil.showNetErrorToast(this);
+        ToastUtils.showNetErrorToast(this);
     }
 
     /**

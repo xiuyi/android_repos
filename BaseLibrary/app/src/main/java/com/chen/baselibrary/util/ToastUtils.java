@@ -18,7 +18,7 @@ import com.chen.baselibrary.R;
  *	复制需要layout:toast_icon.xml和toast_txt.xml两个布局文件
  *	复制需要drawable:toast_corner_bg.xml背景图
  */
-public class ToastUtil {
+public class ToastUtils {
 	/**
 	 * 定义显示位置的枚举类型
 	 */
