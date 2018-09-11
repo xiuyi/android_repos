@@ -457,10 +457,11 @@ public class FileUtils {
         String duration = null;
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
-            //如果是网络路径
+            // 如果是网络路径
             if (url.startsWith("http")) {
                 retriever.setDataSource(url, new HashMap<String, String>());
-            } else {//如果是本地路径
+            // 如果是本地路径
+            } else {
                 retriever.setDataSource(url);
             }
             duration = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
