@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
 
 /**
@@ -21,7 +23,8 @@ public class BaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        // Logger初始化
+        Logger.addLogAdapter(new AndroidLogAdapter());
         //bugly以及应用升级SDK初始化
         Bugly.init(getApplicationContext(), "22123491d4", false);
         initScreenSize();

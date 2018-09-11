@@ -69,7 +69,7 @@ public class NotificationUtils {
     }
 
     /**
-     * 使用默认的CHANNEL_ID构造通知
+     * 使用默认的CHANNEL_ID(APPID）构造通知
      * @param context
      * @param smallIcon
      * @param defaults
@@ -105,6 +105,7 @@ public class NotificationUtils {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId);
         builder.setWhen(System.currentTimeMillis())
                 .setSmallIcon(smallIcon)
+                .setAutoCancel(autoCancel)
                 .setDefaults(defaults);
 
         if(!TextUtils.isEmpty(ticker)){
