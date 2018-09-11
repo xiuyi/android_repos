@@ -1,5 +1,15 @@
 package com.chen.baselibrary.util;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+
+import com.chen.baselibrary.activity.BaseApplication;
+
 /**
  * @author chen
  * @date 2018/9/10 下午4:27
@@ -35,4 +45,105 @@ public class SystemUtils {
 
         return SYS;
     }
+
+    /**
+     * 获取APPid
+     * @return
+     */
+    public static String getAppId(){
+        return BaseApplication.getInstance().getApplicationInfo().processName;
+    }
+
+    /**
+     * 获取应用程序名称
+     */
+    public static synchronized String getAppName() {
+        try {
+            Context context = BaseApplication.getInstance();
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    context.getPackageName(), 0);
+            int labelRes = packageInfo.applicationInfo.labelRes;
+            return context.getResources().getString(labelRes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * [获取应用程序版本名称信息]
+     * @param context
+     * @return 当前应用的版本名称
+     */
+    public static synchronized String getVersionName(Context context) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    context.getPackageName(), 0);
+            return packageInfo.versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * 获取应用程序版本名称信息
+     * @return 当前应用的版本名称
+     */
+    public static synchronized int getVersionCode() {
+        try {
+            Context context = BaseApplication.getInstance();
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    context.getPackageName(), 0);
+            return packageInfo.versionCode;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
+    /**
+     * 获取应用程序包名
+     * @return 当前应用的包名
+     */
+    public static synchronized String getPackageName() {
+        try {
+            Context context = BaseApplication.getInstance();
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    context.getPackageName(), 0);
+            return packageInfo.packageName;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * 获取图标 bitmap
+     */
+    public static synchronized Bitmap getBitmap() {
+        PackageManager packageManager = null;
+        ApplicationInfo applicationInfo = null;
+        Context context = BaseApplication.getInstance();
+        try {
+            packageManager = context.getApplicationContext()
+                    .getPackageManager();
+            applicationInfo = packageManager.getApplicationInfo(
+                    context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            applicationInfo = null;
+        }
+        Drawable d = packageManager.getApplicationIcon(applicationInfo);
+        BitmapDrawable bd = (BitmapDrawable) d;
+        Bitmap bm = bd.getBitmap();
+        return bm;
+    }
+
 }

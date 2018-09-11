@@ -47,6 +47,8 @@ public class ActivityUtils {
      */
     public static void jumpToActivity(Activity activity,
                                       Class<? extends Activity> cls,boolean srcFinish) {
+        checkNotNull(activity);
+        checkNotNull(cls);
         Intent intent = new Intent(activity, cls);
         activity.startActivity(intent);
         if(srcFinish) {
@@ -65,6 +67,8 @@ public class ActivityUtils {
     public static void jumpToActivity(Activity activity,
                                       Class<? extends Activity> cls,
                                       HashMap<String,Object> hashMap, boolean srcFinish) {
+        checkNotNull(activity);
+        checkNotNull(cls);
         Intent intent = new Intent(activity, cls);
         Iterator<?> iterator = hashMap.entrySet().iterator();
         while (iterator.hasNext()) {
