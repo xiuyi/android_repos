@@ -91,9 +91,9 @@ dependencies {
     // 汉字转拼音
     implementation files('libs/pinyin4j-2.5.0.jar')
 }
-    // github 打包
-    apply plugin: 'maven'
-    uploadArchives {
+// github 打包
+apply plugin: 'maven'
+uploadArchives {
     repositories.mavenDeployer {
         def deployPath = file(getProperty('aar.deployPath'))
         repository(url: "file://${deployPath.absolutePath}")

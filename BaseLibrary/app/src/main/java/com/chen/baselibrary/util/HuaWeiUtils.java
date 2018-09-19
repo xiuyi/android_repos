@@ -3,7 +3,11 @@ package com.chen.baselibrary.util;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 
 import java.lang.reflect.Method;
 
@@ -56,5 +60,20 @@ public class HuaWeiUtils {
             e.printStackTrace();
         }
         return emuiApiLevel;
+    }
+
+    /**
+     * 更新角标
+     * @param count
+     * @param launchActivityClass
+     */
+    public static void updateBadge(Context context,int count,String launchActivityClass){
+        String packageName = SystemUtils.getPackageName();
+        Bundle extra =new Bundle();
+        extra.putString("package", packageName);
+        extra.putString("class", launchActivityClass);
+        extra.putInt("badgenumber", count);
+        Logger.i("package:" + packageName + " class:"+launchActivityClass + " count:"+count);
+        context.getContentResolver().call(Uri.parse("content://com.huawei.andro id.launcher.settings/badge/"), "change_badge", null, extra);
     }
 }

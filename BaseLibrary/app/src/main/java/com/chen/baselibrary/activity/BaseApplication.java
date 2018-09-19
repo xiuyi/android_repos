@@ -3,9 +3,11 @@ package com.chen.baselibrary.activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 
 import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.BuildConfig;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
 
@@ -24,7 +26,12 @@ public class BaseApplication extends Application{
         super.onCreate();
         instance = this;
         // Logger初始化
-        Logger.addLogAdapter(new AndroidLogAdapter());
+        Logger.addLogAdapter(new AndroidLogAdapter(){
+            @Override
+            public boolean isLoggable(int priority, @Nullable String tag) {
+                return BuildConfig.DEBUG;
+            }
+        });
         //bugly以及应用升级SDK初始化
         Bugly.init(getApplicationContext(), "22123491d4", false);
         initScreenSize();
