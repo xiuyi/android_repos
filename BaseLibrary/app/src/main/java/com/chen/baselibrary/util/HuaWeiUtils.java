@@ -74,6 +74,6 @@ public class HuaWeiUtils {
         extra.putString("class", launchActivityClass);
         extra.putInt("badgenumber", count);
         Logger.i("package:" + packageName + " class:"+launchActivityClass + " count:"+count);
-        context.getContentResolver().call(Uri.parse("content://com.huawei.andro id.launcher.settings/badge/"), "change_badge", null, extra);
+        context.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", null, extra);
     }
 }
