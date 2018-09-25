@@ -27,6 +27,7 @@ public class SystemUtils {
 
     /**
      * 获取系统的名称，能够判断小米、华为、魅族系统
+     *
      * @return 系统名称
      */
     public static String getSystemName() {
@@ -47,10 +48,25 @@ public class SystemUtils {
     }
 
     /**
-     * 获取APPid
+     * 是否是debug模式
+     *
      * @return
      */
-    public static String getAppId(){
+    public static boolean isDebug() {
+        try {
+            ApplicationInfo info = BaseApplication.getInstance().getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * 获取APPid
+     *
+     * @return
+     */
+    public static String getAppId() {
         return BaseApplication.getInstance().getApplicationInfo().processName;
     }
 
@@ -73,6 +89,7 @@ public class SystemUtils {
 
     /**
      * [获取应用程序版本名称信息]
+     *
      * @param context
      * @return 当前应用的版本名称
      */
@@ -91,6 +108,7 @@ public class SystemUtils {
 
     /**
      * 获取应用程序版本名称信息
+     *
      * @return 当前应用的版本名称
      */
     public static synchronized int getVersionCode() {
@@ -109,6 +127,7 @@ public class SystemUtils {
 
     /**
      * 获取应用程序包名
+     *
      * @return 当前应用的包名
      */
     public static synchronized String getPackageName() {
