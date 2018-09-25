@@ -19,10 +19,11 @@ ext {
     glideVersion = '3.7.0'
     rxPermissionVersion = '0.9.5@aar'
     buglyVersion = 'latest.release'
-    retrofitVersion = '2.0.2'
+    retrofitVersion = '2.3.0'
     butterknifeVersion = '8.8.1'
     roomVersion = '1.1.1'
     debugDBVersion = '1.0.4'
+    loggerVersion = '2.2.0'
 }
 
 android {
@@ -62,7 +63,7 @@ dependencies {
     // Retrofit库
     implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitVersion"
 
     // guava
     implementation "com.google.guava:guava:$project.guavaVersion"
