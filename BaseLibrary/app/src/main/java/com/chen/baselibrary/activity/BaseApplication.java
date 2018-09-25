@@ -6,8 +6,6 @@ import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.chen.baselibrary.util.SystemUtils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.BuildConfig;
 import com.orhanobut.logger.Logger;
@@ -34,12 +32,6 @@ public class BaseApplication extends Application{
                 return BuildConfig.DEBUG;
             }
         });
-        // ARouter初始化
-        if(SystemUtils.isDebug()){
-            ARouter.openLog();
-            ARouter.openDebug();
-        }
-        ARouter.init(this);
 
         //bugly以及应用升级SDK初始化
         Bugly.init(getApplicationContext(), "22123491d4", false);

@@ -24,7 +24,6 @@ ext {
     roomVersion = '1.1.1'
     debugDBVersion = '1.0.4'
     loggerVersion = '2.2.0'
-    aRouterVersion = '1.4.0'
 }
 
 android {
@@ -98,9 +97,6 @@ dependencies {
 
     // Logger
     implementation "com.orhanobut:logger:$project.loggerVersion"
-
-    // ARouter
-    compile "com.alibaba:arouter-api:$project.aRouterVersion"
 
     // 汉字转拼音
     implementation files('libs/pinyin4j-2.5.0.jar')
