@@ -24,6 +24,7 @@ ext {
     roomVersion = '1.1.1'
     debugDBVersion = '1.0.4'
     loggerVersion = '2.2.0'
+    aRouterVersion = '1.4.0'
 }
 
 android {
@@ -35,6 +36,12 @@ android {
         versionCode 1
         versionName project.PUBLISH_VERSION
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //用于ARouter配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     compileOptions {
@@ -84,11 +91,17 @@ dependencies {
 
     // 黄油刀
     implementation "com.jakewharton:butterknife:$project.butterknifeVersion"
+
     // Room
     implementation "android.arch.persistence.room:runtime:$project.roomVersion"
     implementation "android.arch.persistence.room:rxjava2:$project.roomVersion"
+
     // Logger
     implementation "com.orhanobut:logger:$project.loggerVersion"
+
+    // ARouter
+    compile "com.alibaba:arouter-api:$project.aRouterVersion"
+
     // 汉字转拼音
     implementation files('libs/pinyin4j-2.5.0.jar')
 }

@@ -79,35 +79,6 @@ public class FileUtils {
     }
 
     /**
-     * 获取本地视频缩略图
-     *
-     * @param filePath 视频文件本地路径
-     * @return 图片
-     */
-    @SuppressLint("NewApi")
-    public static Bitmap createVideoThumbnail(String filePath) {
-        Bitmap bitmap = null;
-        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        try {
-            retriever.setDataSource(filePath);
-
-            bitmap = retriever.getFrameAtTime(1000);
-
-        } catch (Exception ex) {
-
-        } finally {
-            try {
-                retriever.release();
-
-            } catch (RuntimeException ex) {
-            }
-
-        }
-        return bitmap;
-
-    }
-
-    /**
      * 格式化单位
      *
      * @param length 长度
@@ -400,7 +371,7 @@ public class FileUtils {
     }
 
     /**
-     * 获取amr文件时长,单位秒
+     * 获取本地amr文件时长,单位秒
      *
      * @param file 本地文件路径
      * @return 时长 单位秒
@@ -448,21 +419,21 @@ public class FileUtils {
     }
 
     /**
-     * 根据URL获取视频文件的时长
+     * 获取本地视频文件时长
      *
-     * @param url 可以是本地路径，可以是http开头的url
+     * @param path 本地文件路径，如果是http开头的网络视频则返回0
      * @return 视频时长 单位秒
      */
-    public static long getVideoDuration(String url) {
+    public static long getVideoDuration(String path) {
         String duration = null;
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
             // 如果是网络路径
-            if (url.startsWith("http")) {
-                retriever.setDataSource(url, new HashMap<String, String>());
+            if (path.startsWith("http")) {
+                return 0;
             // 如果是本地路径
             } else {
-                retriever.setDataSource(url);
+                retriever.setDataSource(path);
             }
             duration = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
         } catch (Exception ex) {
@@ -504,7 +475,6 @@ public class FileUtils {
         }
         return bitmap;
     }
-
     /**
      * 根据路径删除指定的目录，无论存在与否
      * 如果是目录，将删除其下的子目录以及文件

@@ -28,3 +28,11 @@ annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterknifeVe
 6、room使用
     注意:注解处理器需放在app模块的build.gradle中
     annotationProcessor "android.arch.persistence.room:compiler:$project.roomVersion"
+
+7、ARouter使用
+    https://github.com/alibaba/ARouter/blob/master/README_CN.md
+    注意:注释处理器需要放在app模块的build.gradle中，版本号不需要修改，baseLibrary中使用的是1.4.0
+    步骤一：annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    步骤二：在项目的build.gradle中添加aRouter插件，加快注册速度
+        //aRouter gradle插件
+        classpath "com.alibaba:arouter-register:1.0.2"
