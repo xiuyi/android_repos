@@ -24,6 +24,7 @@ ext {
     roomVersion = '1.1.1'
     debugDBVersion = '1.0.4'
     loggerVersion = '2.2.0'
+    diskLruCacheVersion = '2.0.2'
 }
 
 android {
@@ -97,6 +98,9 @@ dependencies {
 
     // Logger
     implementation "com.orhanobut:logger:$project.loggerVersion"
+
+    // DiskLruCache
+    implementation "com.jakewharton:disklrucache:$project.diskLruCacheVersion"
 
     // 汉字转拼音
     implementation files('libs/pinyin4j-2.5.0.jar')

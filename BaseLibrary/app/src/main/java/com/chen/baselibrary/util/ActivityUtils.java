@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import com.tbruyelle.rxpermissions2.RxPermissionsFragment;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -28,6 +25,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class ActivityUtils {
     private static final String FRAGMENT_TAG = "MyActivityResultFragment";
+    private static final int REQUEST_CODE = 0x9009;
     private  MyActivityResultFragment myActivityResultFragment;
 
     public ActivityUtils(@NonNull Activity activity){
@@ -146,13 +144,12 @@ public class ActivityUtils {
      * startActivityForResult
      * @param activity 源Activity
      * @param requestIntent 目标intent
-     * @param requestCode 请求码
      * @param callback 回调
      */
-    public void startActivityForResult(Activity activity,Intent requestIntent,int requestCode,ActivityResultCallback callback){
+    public void startActivityForResult(Activity activity,Intent requestIntent,ActivityResultCallback callback){
         checkNotNull(myActivityResultFragment);
         this.myActivityResultFragment.setResultCallback(callback);
-        this.myActivityResultFragment.startActivityForResult(requestIntent,requestCode);
+        this.myActivityResultFragment.startActivityForResult(requestIntent,REQUEST_CODE);
     }
 
     /**
@@ -198,9 +195,9 @@ public class ActivityUtils {
             super.onActivityResult(requestCode, resultCode, data);
             if(this.callback != null){
                 if(resultCode == Activity.RESULT_CANCELED) {
-                    this.callback.onCanceledResult(requestCode);
+                    this.callback.onCanceledResult();
                 }else{
-                    this.callback.onOkResult(requestCode,data);
+                    this.callback.onOkResult(data);
                 }
             }
         }
@@ -215,16 +212,14 @@ public class ActivityUtils {
      */
     public interface ActivityResultCallback{
         /**
-         * resultAcitivt被取消
-         * @param requestCode
+         * resultAcitivt被取消RESULT_CANCELED
          */
-        void onCanceledResult(int requestCode);
+        void onCanceledResult();
 
         /**
-         * resultActivity正常返回
-         * @param requestCode
+         * resultActivity正常返回RESULT_OK或其他
          * @param data
          */
-        void onOkResult(int requestCode, Intent data);
+        void onOkResult(Intent data);
     }
 }

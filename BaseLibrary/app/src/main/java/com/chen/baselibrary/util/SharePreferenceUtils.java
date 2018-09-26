@@ -3,6 +3,7 @@ package com.chen.baselibrary.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * SharedPreferences 工具类
@@ -31,42 +32,50 @@ public class SharePreferenceUtils {
     }
 
     public void putString(String key, String value) {
+        checkNotNull(this.sp);
         SharedPreferences.Editor editor = this.sp.edit();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public String getString(String key, String defaultValue) {
+        checkNotNull(this.sp);
         return this.sp.getString(key, defaultValue);
     }
 
     public void putBoolean(String key, Boolean value) {
+        checkNotNull(this.sp);
         SharedPreferences.Editor editor = this.sp.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public Boolean getBoolean(String key, Boolean defaultValue) {
+        checkNotNull(this.sp);
         return this.sp.getBoolean(key, defaultValue);
     }
 
     public void putInt(String key,int value){
+        checkNotNull(this.sp);
         SharedPreferences.Editor editor = this.sp.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public int getInt(String key, int defaultValue) {
+        checkNotNull(this.sp);
         return this.sp.getInt(key, defaultValue);
     }
 
     public void putFloat(String key,float value){
+        checkNotNull(this.sp);
         SharedPreferences.Editor editor = this.sp.edit();
         editor.putFloat(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public float getFloat(String key, float defaultValue) {
+        checkNotNull(this.sp);
         return this.sp.getFloat(key, defaultValue);
     }
 }
