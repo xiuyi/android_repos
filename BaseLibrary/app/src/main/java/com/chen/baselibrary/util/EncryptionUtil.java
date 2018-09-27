@@ -1,5 +1,6 @@
 package com.chen.baselibrary.util;
 
+import android.text.TextUtils;
 import android.util.Base64;
 
 import java.io.UnsupportedEncodingException;
@@ -18,6 +19,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * 加密工具：MD5
@@ -106,15 +109,40 @@ public class EncryptionUtil {
 	}
 
 	/**
+	 * 检查明文密钥长度，AES要求密钥长度为16位
+	 * 如果不是16位则截取或者重复为16位
+	 * @param key
+	 * @return 将key进行修复使他的长度=16
+	 */
+	private static String checkAndRepairKey(String key){
+		if(TextUtils.isEmpty(key)){
+			return null;
+		}
+		int length = key.length();
+		if(length != 16){
+			throw new IllegalArgumentException("密钥长度必须为16位");
+		}
+		String newKey = key;
+		if(newKey.length() < 16){
+			while (newKey.length() < 16){
+				newKey += newKey;
+			}
+		}
+
+		return newKey.substring(0,15);
+	}
+	/**
 	 * 加密
 	 * * @param plaintext 明文
 	 * * @param key 秘钥
 	 * * @return Base64编码的密文
 	 */
-	public static String encrypt(String plaintext, String key) {
+	public static String AESEncrypt(String plaintext, String key) {
+		checkNotNull(plaintext);
+		checkNotNull(key);
 		try {
 			// Base64还原秘钥
-			byte[] keyBytes = key.getBytes();
+			byte[] keyBytes = checkAndRepairKey(key).getBytes();
 			// 还原密钥对象
 			SecretKey secretKey = new SecretKeySpec(keyBytes, AES);
 			// 加密初始化实例
@@ -148,10 +176,12 @@ public class EncryptionUtil {
 	 * * @param key  秘钥
 	 * * @return 明文
 	 */
-	public static String decrypt(String ciphertext, String key) {
+	public static String AESDecrypt(String ciphertext, String key) {
+		checkNotNull(ciphertext);
+		checkNotNull(key);
 		try {
 			// Base64还原秘钥
-			byte[] keyBytes = key.getBytes();
+			byte[] keyBytes = checkAndRepairKey(key).getBytes();
 			// 还原密钥对象
 			SecretKey secretKey = new SecretKeySpec(keyBytes, AES);
 			// 加密初始化实例
