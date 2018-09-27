@@ -88,7 +88,7 @@ public class DiskCacheUtil {
         DiskLruCache.Editor editor = this.mDiskLruCache.edit(md5Key);
         OutputStream outputStream = editor.newOutputStream(0);
         outputStream.write(content.getBytes("UTF-8"));
-        editor.abortUnlessCommitted();
+        editor.commit();
         this.mDiskLruCache.flush();
     }
 
