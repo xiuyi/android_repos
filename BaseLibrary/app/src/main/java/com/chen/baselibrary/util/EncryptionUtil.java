@@ -129,7 +129,7 @@ public class EncryptionUtil {
 			}
 		}
 
-		return newKey.substring(0,15);
+		return newKey.substring(0,16);
 	}
 	/**
 	 * 加密

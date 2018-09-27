@@ -39,13 +39,26 @@ public class DiskCacheUtil {
      * @throws IOException
      */
     public void open(Context context) throws FileUtils.LackOfSpaceException, IOException {
+        open(context,"");
+    }
+    /**
+     * 开启缓存，需首先调用此方法，然后再调用其他存储/读取等方法
+     * open和close是成对存在的
+     * @param context
+     * @param subDir 子目录名称
+     * @throws FileUtils.LackOfSpaceException
+     * @throws IOException
+     */
+    public void open(Context context,String subDir) throws FileUtils.LackOfSpaceException, IOException {
         if(!this.mIsOpen || this.mDiskLruCache == null) {
-            File cacheDir = FileUtils.getDiskCacheDir(context);
+            File cacheDir = new File(FileUtils.getDiskCacheDir(context).getPath() + File.separator + subDir);
+            if(!cacheDir.exists()){
+                cacheDir.mkdirs();
+            }
             this.mDiskLruCache = DiskLruCache.open(cacheDir, SystemUtils.getVersionCode(), 1, Integer.MAX_VALUE);
             this.mIsOpen = true;
         }
     }
-
     /**
      * 设置AES加密密钥，明文，必须为16位
      * @param password
