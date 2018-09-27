@@ -13,6 +13,7 @@
 package com.chen.baselibrary.util;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.os.Environment;
@@ -37,32 +38,25 @@ import java.util.HashMap;
  */
 public class FileUtils {
     /**
-     * 在外部存储的根路径下新建目录或者文件
-     *
-     * @param name /a/b.txt 类似的路径名
-     * @return 返回新创建的文件
+     * 获取应用的本地缓存地址
+     * @param context 如果有外部存储，则返回getExternalCacheDir
+     *                如果没有外部存储，则返回getCacheDir
+     * @return
      */
-    public static File createNewDirOrFileInExternalRootDir(String name) {
-        File file = new File(getExternalRootDir(), name);
-        //目录
-        if (file.isDirectory() && !file.exists()) {
-            if (file.mkdirs()) {
-                return file;
-            }
+    public static File getDiskCacheDir(Context context) throws LackOfSpaceException{
+        File cacheFile = null;
+        if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()){
+            cacheFile = context.getExternalCacheDir();
+        }else{
+            cacheFile = context.getCacheDir();
         }
-        //文件
-        if (file.isFile() && !file.exists()) {
-            try {
-                if (file.mkdirs() && file.createNewFile()) {
-                    return file;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        long freeSpace = cacheFile.getFreeSpace();
+        // 如果剩余的存储空间小于5M则抛出异常
+        if(freeSpace < 5 * 1024 * 1024){
+            throw new LackOfSpaceException("缓存空间不足5M");
         }
-        return null;
+        return cacheFile;
     }
-
     /**
      * 获取外部存储的根路径，
      * 如果没有返回null
@@ -557,6 +551,18 @@ public class FileUtils {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     *  存储空间不足异常
+     */
+    public static class LackOfSpaceException extends Exception{
+        public LackOfSpaceException(){
+            super();
+        }
+        public LackOfSpaceException(String e){
+            super(e);
         }
     }
 }
