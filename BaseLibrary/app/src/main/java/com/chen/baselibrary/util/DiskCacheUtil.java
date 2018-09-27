@@ -1,8 +1,6 @@
 package com.chen.baselibrary.util;
 
 import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.jakewharton.disklrucache.DiskLruCache;
 
@@ -13,6 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -84,17 +84,6 @@ public class DiskCacheUtil {
     }
 
     /**
-     * 保存boolean类型数据
-     *
-     * @param key   键
-     * @param value
-     * @throws IOException
-     */
-    public void saveBoolean(String key, boolean value) throws IOException {
-        this.saveString(key, value ? "true" : "false", false);
-    }
-
-    /**
      * 缓存字符数据
      *
      * @param key         键
@@ -131,6 +120,16 @@ public class DiskCacheUtil {
         throw new IllegalArgumentException("DiskLruCache未开启");
     }
 
+    /**
+     * 保存boolean类型数据
+     *
+     * @param key   键
+     * @param value
+     * @throws IOException
+     */
+    public void saveBoolean(String key, boolean value) throws IOException {
+        this.saveString(key, value ? "true" : "false", false);
+    }
     /**
      * 获取boolean类型数据
      *
@@ -257,7 +256,7 @@ public class DiskCacheUtil {
      * @param value
      * @throws IOException
      */
-    public void saveSerializable(String key, Serializable value) throws IOException {
+    public void saveObject(String key, Serializable value) throws IOException {
         checkNotNull(key);
         checkNotNull(value);
 
@@ -280,7 +279,7 @@ public class DiskCacheUtil {
      * @return
      * @throws IOException
      */
-    public Object getSerializable(String key) throws IOException {
+    public Object getObject(String key) throws IOException {
         checkNotNull(key);
 
         checkIsOpen();
@@ -299,6 +298,45 @@ public class DiskCacheUtil {
             }
         }
         return null;
+    }
+
+    /**
+     * 保存一个List对象
+     * @param key
+     * @param list
+     * @throws IOException
+     */
+    public void saveList(String key, List<? extends Serializable> list) throws IOException{
+        checkNotNull(key);
+        checkNotNull(list);
+        if(list.size() == 0){
+            return;
+        }
+
+        if(list instanceof ArrayList){
+            this.saveObject(key,(ArrayList) list);
+        }else{
+            ArrayList arrayList = new ArrayList();
+            arrayList.addAll(list);
+            this.saveObject(key, arrayList);
+        }
+    }
+
+    /**
+     * 获取一个List
+     * @param key
+     * @return
+     * @throws IOException
+     */
+    public List getList(String key) throws IOException{
+        checkNotNull(key);
+
+        Object obj = this.getObject(key);
+        if(obj instanceof List){
+            return (List) obj;
+        }else {
+            throw new ClassCastException("缓存" + key + "无法转换为List对象");
+        }
     }
 
     /**
@@ -342,6 +380,30 @@ public class DiskCacheUtil {
         return null;
     }
 
+    public void remove(String key) throws IOException{
+        checkNotNull(key);
+        String md5Key = EncryptionUtil.GetMD5Code(key.trim());
+        this.mDiskLruCache.remove(md5Key);
+    }
+    /**
+     * 获取缓存占用空间
+     * @return
+     */
+    public long getCacheSize(){
+        checkIsOpen();
+
+        return this.mDiskLruCache.size();
+    }
+
+    /**
+     * 清空所有缓存
+     * @throws IOException
+     */
+    public void clearAllCache() throws IOException{
+        checkIsOpen();
+
+        this.mDiskLruCache.delete();
+    }
     /**
      * 关闭缓存
      * open和close是成对存在的
