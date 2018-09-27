@@ -83,7 +83,7 @@ public class DiskCacheUtil {
         String md5Key = EncryptionUtil.GetMD5Code(key);
         String content = value;
         if(needEncrypt){
-            content = EncryptionUtil.AESDecrypt(value,this.AES_PASSWORD);
+            content = EncryptionUtil.AESEncrypt(value,this.AES_PASSWORD);
         }
         DiskLruCache.Editor editor = this.mDiskLruCache.edit(md5Key);
         OutputStream outputStream = editor.newOutputStream(0);
