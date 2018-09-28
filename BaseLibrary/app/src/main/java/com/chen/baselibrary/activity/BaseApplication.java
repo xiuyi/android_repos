@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.Nullable;
+import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 
 import com.chen.baselibrary.util.SystemUtils;
@@ -25,6 +26,7 @@ public class BaseApplication extends Application{
     public void onCreate() {
         super.onCreate();
         instance = this;
+        MultiDex.install(this);
         // Logger初始化
         Logger.addLogAdapter(new AndroidLogAdapter(){
             @Override

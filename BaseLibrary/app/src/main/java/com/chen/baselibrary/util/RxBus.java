@@ -90,7 +90,7 @@ public class RxBus {
             compositeDisposable.clear();
         }
 
-        Logger.e("RxBus订阅对象列表数量:%d", getSubscribeSize());
+        Logger.i("RxBus订阅对象列表数量:%d", getSubscribeSize());
     }
 
     /**
