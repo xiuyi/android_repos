@@ -1,5 +1,6 @@
 package com.chen.baselibrary.util;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -42,6 +43,7 @@ public class NotificationUtils {
      * @param channels 兼容Version.O(8.0) 创建channels，如果为null
      *                 默认创建以APPID为CHANNEL_ID的channel
      */
+    @TargetApi(26)
     public void init(NotificationChannel... channels){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //默认APPID的channel_id

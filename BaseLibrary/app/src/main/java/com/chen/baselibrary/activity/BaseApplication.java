@@ -6,8 +6,8 @@ import android.content.res.Resources;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 
+import com.chen.baselibrary.util.SystemUtils;
 import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.BuildConfig;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
 
@@ -29,7 +29,7 @@ public class BaseApplication extends Application{
         Logger.addLogAdapter(new AndroidLogAdapter(){
             @Override
             public boolean isLoggable(int priority, @Nullable String tag) {
-                return BuildConfig.DEBUG;
+                return SystemUtils.isDebug();
             }
         });
 
