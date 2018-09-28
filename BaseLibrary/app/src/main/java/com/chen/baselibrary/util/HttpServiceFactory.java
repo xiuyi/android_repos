@@ -11,7 +11,6 @@ import retrofit2.Retrofit;
  * email xiuyi.chen@erinspur.com
  * desc Http service的工厂类
  */
-
 public class HttpServiceFactory {
     private static String BASE_URL = "";
     private static OkHttpClient client = new OkHttpClient.Builder()

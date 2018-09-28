@@ -44,7 +44,7 @@ public class NotificationUtils {
      *                 默认创建以APPID为CHANNEL_ID的channel
      */
     @TargetApi(26)
-    public void init(NotificationChannel... channels){
+    public void init(NotificationChannel[] channels){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             //默认APPID的channel_id
             String channelId = DEFAULT_CHANNEL_ID;
@@ -67,6 +67,13 @@ public class NotificationUtils {
             }
         }
 
+        this.isInit = true;
+    }
+
+    /**
+     * 初始化方法，兼容<26版本
+     */
+    public void init(){
         this.isInit = true;
     }
 
