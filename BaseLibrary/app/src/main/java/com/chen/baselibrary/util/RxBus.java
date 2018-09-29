@@ -1,18 +1,15 @@
 package com.chen.baselibrary.util;
 
-import android.app.Instrumentation;
 import android.content.Context;
 
 import com.orhanobut.logger.Logger;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
@@ -23,18 +20,18 @@ import io.reactivex.subjects.Subject;
  * email xiuyi.chen@erinspur.com
  * desc 时间总线工具类
  */
-
 public class RxBus {
     private volatile static RxBus mDefaultInstance;
     private final Subject<Object> mBus;
     /**
-     * 将订阅解绑绑定到Context，调用unSubscribe方法只解绑指定的Content的订阅
+     * 将订阅解绑绑定到Context，调用unSubscribe方法只解绑指定的Context的订阅
+     * 此处使用弱引用Context，防止Context销毁时此处被强引用无法回收Context
      */
-    private Map<Context,CompositeDisposable> cxtDisposaleMap;
+    private WeakHashMap<Context,CompositeDisposable> cxtDisposaleMap;
 
     private RxBus() {
         mBus = PublishSubject.create().toSerialized();
-        cxtDisposaleMap = new HashMap<>();
+        cxtDisposaleMap = new WeakHashMap<>();
     }
 
     public static RxBus getInstance() {
@@ -59,7 +56,7 @@ public class RxBus {
      * 订阅事件
      * @param context 绑定上下文
      * @param eventType 事件类型
-     * @param consumer 事件消费者
+     * @param consumer 事件消费者 只处理onNext事件
      * @param <T> 事件类型
      */
     public <T> void subscribe(Context context,final Class<T> eventType,Consumer<T> consumer){
@@ -90,7 +87,8 @@ public class RxBus {
             compositeDisposable.clear();
         }
 
-        Logger.i("RxBus订阅对象列表数量:%d", getSubscribeSize());
+        System.out.println("RxBus订阅对象列表数量:");
+        //Logger.i("RxBus订阅对象列表数量:%d", getSubscribeSize());
     }
 
     /**
