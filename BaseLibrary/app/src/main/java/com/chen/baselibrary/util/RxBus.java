@@ -86,9 +86,9 @@ public class RxBus {
             CompositeDisposable compositeDisposable = cxtDisposaleMap.get(context);
             compositeDisposable.clear();
         }
-
-        System.out.println("RxBus订阅对象列表数量:");
-        //Logger.i("RxBus订阅对象列表数量:%d", getSubscribeSize());
+        int subscribeSize = getSubscribeSize();
+        System.out.println("RxBus订阅对象列表数量:" + subscribeSize);
+        Logger.i("RxBus订阅对象列表数量:%d", subscribeSize);
     }
 
     /**
